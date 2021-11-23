@@ -1,0 +1,39 @@
+{
+  "name": "opencv-nodejs",
+  "version": "1.0.0",
+  "description": "Node.js bindings for your favorite computer vision library.",
+  "repository": "https://github.com/developer239/opencv-nodejs",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "bindings": "~1.2.1",
+    "node-addon-api": "^1.0.0"
+  },
+  "scripts": {
+    "install": "cmake-js compile -d cpp print-configure",
+    "build": "cmake-js compile -d cpp print-configure"
+  },
+  "keywords": [
+    "node",
+    "c++",
+    "cpp",
+    "node-addon-api",
+    "cmake",
+    "cmake-js",
+    "opencv",
+    "vision"
+  ],
+  "devDependencies": {
+    "@semantic-release/changelog": "6.0.1",
+    "@semantic-release/commit-analyzer": "9.0.1",
+    "@semantic-release/git": "10.0.1",
+    "@semantic-release/npm": "8.0.3",
+    "@semantic-release/release-notes-generator": "10.0.2",
+    "cmake-js": "6.2.1",
+    "semantic-release": "18.0.0"
+  }
+}
