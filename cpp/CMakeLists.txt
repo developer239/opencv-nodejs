@@ -4,9 +4,15 @@ set(CMAKE_CXX_STANDARD 11)
 
 project(opencv-nodejs)
 
+# Find pkg_search_module
+find_package(PkgConfig REQUIRED)
+
 include_directories(${CMAKE_JS_INC})
 file(GLOB SOURCE_FILES "src/main.cpp")
-add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC})
+add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC}
+        src/core/Point.cpp
+        src/core/Point.h
+)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
 
@@ -20,6 +26,15 @@ execute_process(COMMAND node -p "require('node-addon-api').include"
 string(REGEX REPLACE "[\r\n\"]" "" NODE_ADDON_API_DIR ${NODE_ADDON_API_DIR})
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${NODE_ADDON_API_DIR})
+
+# Find OpenCV
+find_package(OpenCV REQUIRED)
+target_link_libraries(${PROJECT_NAME}
+        "-framework Carbon"
+        )
+target_link_libraries(${PROJECT_NAME}
+        ${OpenCV_LIBS}
+        )
 
 # define NPI_VERSION
 add_definitions(-DNAPI_VERSION=3)

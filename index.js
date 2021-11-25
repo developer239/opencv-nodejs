@@ -4,4 +4,6 @@ const addon = require('bindings')({
   try: [['module_root', 'cpp', 'build', 'Release', 'bindings']]
 })
 
-module.exports = {}
+module.exports = {
+  Point: addon.Point,
+}
