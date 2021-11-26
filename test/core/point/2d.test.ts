@@ -16,4 +16,16 @@ describe('[core] Point 2D', () => {
       expect(point.y).toStrictEqual(30)
     })
   })
+
+  describe('methods', () => {
+    it('adds two points', () => {
+      const point1 = new Point(10, 20)
+      const point2 = new Point(15, 50)
+
+      const resultPoint = point1.add(point2)
+
+      expect(resultPoint.x).toStrictEqual(25)
+      expect(resultPoint.y).toStrictEqual(70)
+    })
+  })
 })

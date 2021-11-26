@@ -9,6 +9,7 @@ Napi::Object Point::Init(Napi::Env env, Napi::Object exports) {
   Napi::Function func = DefineClass(env, "Point", {
       InstanceAccessor("x", &Point::getX, nullptr, napi_default),
       InstanceAccessor("y", &Point::getY, nullptr, napi_default),
+      InstanceMethod("add", &Point::add, napi_default)
   });
 
   constructor = Napi::Persistent(func);
@@ -31,11 +32,11 @@ Point::Point(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Point>(info) {
   if (length == 1) {
     Napi::Object object = info[0].As<Napi::Object>();
 
-    Point *objectParent = Napi::ObjectWrap<Point>::Unwrap(object);
-    cv::Point *objectParentInstance = objectParent->getInternalInstance();
+    Point *pointObject = Napi::ObjectWrap<Point>::Unwrap(object);
+    cv::Point *point = pointObject->getInternalInstance();
 
     // TODO: this only handles 2D points
-    this->_wrappedClass_ = new cv::Point(objectParentInstance->x, objectParentInstance->y);
+    this->_wrappedClass_ = new cv::Point(point->x, point->y);
     return;
   }
 
@@ -69,4 +70,25 @@ Napi::Value Point::getY(const Napi::CallbackInfo &info) {
 
   int y = this->_wrappedClass_->y;
   return Napi::Number::New(env, y);
+}
+
+Napi::Value Point::add(const Napi::CallbackInfo &info) {
+  Napi::Env env = info.Env();
+  Napi::HandleScope scope(env);
+
+  if (info.Length() < 1) {
+    Napi::TypeError::New(env, "Argument expected.").ThrowAsJavaScriptException();
+  }
+
+  Napi::Object pointObject = info[0].As<Napi::Object>();
+  Point *pointToAdd = Napi::ObjectWrap<Point>::Unwrap(pointObject);
+
+  cv::Point resultPoint = *this->getInternalInstance() + *pointToAdd->getInternalInstance();
+
+  Napi::Number x = Napi::Number::New(env, resultPoint.x);
+  Napi::Number y = Napi::Number::New(env, resultPoint.y);
+
+  Napi::Object point = constructor.New({x, y});
+
+  return point;
 }

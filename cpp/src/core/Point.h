@@ -17,6 +17,7 @@ private:
 
   Napi::Value getX(const Napi::CallbackInfo& info);
   Napi::Value getY(const Napi::CallbackInfo& info);
+  Napi::Value add(const Napi::CallbackInfo& info);
 
   cv::Point *_wrappedClass_;
 };
