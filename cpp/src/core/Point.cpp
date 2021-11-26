@@ -7,8 +7,8 @@ Napi::Object Point::Init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
 
   Napi::Function func = DefineClass(env, "Point", {
-      InstanceMethod("getX", &Point::getX),
-      InstanceMethod("getY", &Point::getY),
+      InstanceAccessor("x", &Point::getX, nullptr, napi_default),
+      InstanceAccessor("y", &Point::getY, nullptr, napi_default),
   });
 
   constructor = Napi::Persistent(func);
@@ -29,13 +29,13 @@ Point::Point(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Point>(info) {
   }
 
   if (length == 1) {
-    Napi::Object object_parent = info[0].As<Napi::Object>();
+    Napi::Object object = info[0].As<Napi::Object>();
 
-    Point *example_parent = Napi::ObjectWrap<Point>::Unwrap(object_parent);
-    cv::Point *parent_actual_class_instance = example_parent->getInternalInstance();
+    Point *objectParent = Napi::ObjectWrap<Point>::Unwrap(object);
+    cv::Point *objectParentInstance = objectParent->getInternalInstance();
 
     // TODO: this only handles 2D points
-    this->_wrappedClass_ = new cv::Point(parent_actual_class_instance->x, parent_actual_class_instance->y);
+    this->_wrappedClass_ = new cv::Point(objectParentInstance->x, objectParentInstance->y);
     return;
   }
 
