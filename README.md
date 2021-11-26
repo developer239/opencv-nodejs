@@ -17,6 +17,3 @@ All you have to do after that is to install this library with `yarn` or `npm`.
 ```
 yarn add opencv-nodejs
 ```
-
-## Example
-
