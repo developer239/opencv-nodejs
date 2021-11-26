@@ -27,5 +27,15 @@ describe('[core] Point 2D', () => {
       expect(resultPoint.x).toStrictEqual(25)
       expect(resultPoint.y).toStrictEqual(70)
     })
+
+    it('subtracts two points', () => {
+      const point1 = new Point(40, 60)
+      const point2 = new Point(30, 10)
+
+      const resultPoint = point1.subtract(point2)
+
+      expect(resultPoint.x).toStrictEqual(10)
+      expect(resultPoint.y).toStrictEqual(50)
+    })
   })
 })

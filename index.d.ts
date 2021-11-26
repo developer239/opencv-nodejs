@@ -4,4 +4,5 @@ export class Point {
   x: number;
   y: number;
   add(point: Point): Point;
+  subtract(point: Point): Point;
 }
