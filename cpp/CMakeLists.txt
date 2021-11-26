@@ -12,7 +12,15 @@ file(GLOB SOURCE_FILES "src/main.cpp")
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC}
         src/core/Point.cpp
         src/core/Point.h
-)
+        src/core/Rect.cpp
+        src/core/Rect.h
+        src/core/RotatedRect.cpp
+        src/core/RotatedRect.h
+        src/core/Size.cpp
+        src/core/Size.h
+        src/core/Vec.cpp
+        src/core/Vec.h
+        )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
 

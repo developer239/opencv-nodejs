@@ -3,7 +3,6 @@
 Napi::FunctionReference Point::constructor;
 
 Napi::Object Point::Init(Napi::Env env, Napi::Object exports) {
-  // TODO: this this necessary?
   Napi::HandleScope scope(env);
 
   Napi::Function func = DefineClass(env, "Point", {

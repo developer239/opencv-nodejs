@@ -1,8 +1,16 @@
 #include <napi.h>
 #include "core/Point.h"
+#include "core/Rect.h"
+#include "core/RotatedRect.h"
+#include "core/Size.h"
+#include "core/Vec.h"
 
 Napi::Object InitAll(Napi::Env env, Napi::Object exports) {
   Point::Init(env, exports);
+  Rect::Init(env, exports);
+  RotatedRect::Init(env, exports);
+  Size::Init(env, exports);
+  Vec::Init(env, exports);
 
   return exports;
 }
