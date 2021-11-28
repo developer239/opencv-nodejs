@@ -56,5 +56,33 @@ describe('[core] Rect', () => {
         expect(rect.height).toStrictEqual(49) // 49.5 -> 49
       })
     })
+
+    describe('toSquare', () => {
+      describe('when width is higher', () => {
+        it('rescales to square', () => {
+          const rect = new Rect(0, 0, 400, 200)
+
+          rect.toSquare()
+
+          expect(rect.x).toStrictEqual(0)
+          expect(rect.y).toStrictEqual(0)
+          expect(rect.width).toStrictEqual(400)
+          expect(rect.height).toStrictEqual(400)
+        })
+      })
+
+      describe('when height is higher', () => {
+        it('rescales to square', () => {
+          const rect = new Rect(0, 0, 100, 200)
+
+          rect.toSquare()
+
+          expect(rect.x).toStrictEqual(0)
+          expect(rect.y).toStrictEqual(0)
+          expect(rect.width).toStrictEqual(200)
+          expect(rect.height).toStrictEqual(200)
+        })
+      })
+    })
   })
 })

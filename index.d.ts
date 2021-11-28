@@ -22,4 +22,5 @@ export class Rect {
   width: number;
   height: number;
   rescale(scale: number): void;
+  toSquare(): void;
 }

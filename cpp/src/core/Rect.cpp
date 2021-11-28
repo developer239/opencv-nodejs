@@ -11,6 +11,7 @@ Napi::Object Rect::Init(Napi::Env env, Napi::Object exports) {
       InstanceAccessor("width", &Rect::getWidth, nullptr, napi_default),
       InstanceAccessor("height", &Rect::getHeight, nullptr, napi_default),
       InstanceMethod("rescale", &Rect::rescale, napi_default),
+      InstanceMethod("toSquare", &Rect::toSquare, napi_default),
   });
 
   constructor = Napi::Persistent(func);
@@ -87,4 +88,17 @@ void Rect::rescale(const Napi::CallbackInfo &info) {
 
   this->_wrappedClass_->width = static_cast<int>(this->_wrappedClass_->width * scale);
   this->_wrappedClass_->height = static_cast<int>(this->_wrappedClass_->height * scale);
+}
+
+void Rect::toSquare(const Napi::CallbackInfo &info) {
+  Napi::Env env = info.Env();
+  Napi::HandleScope scope(env);
+
+  double diff = this->_wrappedClass_->width - this->_wrappedClass_->height;
+
+  if (diff < 0) {
+    this->_wrappedClass_->width = static_cast<int>(this->_wrappedClass_->width - diff);
+  } else {
+    this->_wrappedClass_->height = static_cast<int>(this->_wrappedClass_->height + diff);
+  }
 }
