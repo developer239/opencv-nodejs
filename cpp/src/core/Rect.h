@@ -15,6 +15,11 @@ public:
 private:
   static Napi::FunctionReference constructor;
 
+  Napi::Value getX(const Napi::CallbackInfo& info);
+  Napi::Value getY(const Napi::CallbackInfo& info);
+  Napi::Value getWidth(const Napi::CallbackInfo& info);
+  Napi::Value getHeight(const Napi::CallbackInfo& info);
+
   cv::Rect *_wrappedClass_;
 };
 

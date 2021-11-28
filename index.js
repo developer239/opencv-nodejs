@@ -7,4 +7,5 @@ const addon = require('bindings')({
 module.exports = {
   Point: addon.Point,
   Size: addon.Size,
+  Rect: addon.Rect,
 }
