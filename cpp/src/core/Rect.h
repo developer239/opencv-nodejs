@@ -19,6 +19,7 @@ private:
   Napi::Value getY(const Napi::CallbackInfo& info);
   Napi::Value getWidth(const Napi::CallbackInfo& info);
   Napi::Value getHeight(const Napi::CallbackInfo& info);
+  void rescale(const Napi::CallbackInfo& info);
 
   cv::Rect *_wrappedClass_;
 };

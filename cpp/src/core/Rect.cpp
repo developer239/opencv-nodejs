@@ -10,6 +10,7 @@ Napi::Object Rect::Init(Napi::Env env, Napi::Object exports) {
       InstanceAccessor("y", &Rect::getY, nullptr, napi_default),
       InstanceAccessor("width", &Rect::getWidth, nullptr, napi_default),
       InstanceAccessor("height", &Rect::getHeight, nullptr, napi_default),
+      InstanceMethod("rescale", &Rect::rescale, napi_default),
   });
 
   constructor = Napi::Persistent(func);
@@ -72,4 +73,18 @@ Napi::Value Rect::getY(const Napi::CallbackInfo &info) {
 
   int y = this->_wrappedClass_->y;
   return Napi::Number::New(env, y);
+}
+
+void Rect::rescale(const Napi::CallbackInfo &info) {
+  Napi::Env env = info.Env();
+  Napi::HandleScope scope(env);
+
+  if (info.Length() < 1) {
+    Napi::TypeError::New(env, "Argument expected.").ThrowAsJavaScriptException();
+  }
+
+  double scale = info[0].As<Napi::Number>();
+
+  this->_wrappedClass_->width = static_cast<int>(this->_wrappedClass_->width * scale);
+  this->_wrappedClass_->height = static_cast<int>(this->_wrappedClass_->height * scale);
 }

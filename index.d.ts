@@ -21,4 +21,5 @@ export class Rect {
   y: number;
   width: number;
   height: number;
+  rescale(scale: number): void;
 }

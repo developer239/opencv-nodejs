@@ -1,23 +1,19 @@
-import { Rect } from '../../../index'
+import { Size } from '../../../index'
 
-describe('[core] Rect', () => {
+describe('[core] Size', () => {
   describe('constructor', () => {
     it('initializes from empty constructor', () => {
-      const rect = new Rect()
+      const size = new Size()
 
-      expect(rect.x).toStrictEqual(0)
-      expect(rect.y).toStrictEqual(0)
-      expect(rect.width).toStrictEqual(0)
-      expect(rect.height).toStrictEqual(0)
+      expect(size.width).toStrictEqual(0)
+      expect(size.height).toStrictEqual(0)
     })
 
     it('initializes from numbers', () => {
-      const rect = new Rect(10, 20, 30, 40)
+      const size = new Size(10, 20)
 
-      expect(rect.x).toStrictEqual(10)
-      expect(rect.y).toStrictEqual(20)
-      expect(rect.width).toStrictEqual(30)
-      expect(rect.height).toStrictEqual(40)
+      expect(size.width).toStrictEqual(10)
+      expect(size.height).toStrictEqual(20)
     })
   })
 })
