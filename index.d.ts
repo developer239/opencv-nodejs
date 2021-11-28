@@ -6,3 +6,10 @@ export class Point {
   add(point: Point): Point;
   subtract(point: Point): Point;
 }
+
+export class Size {
+  constructor();
+  constructor(width: number, height: number);
+  width: number;
+  height: number;
+}

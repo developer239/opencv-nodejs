@@ -15,6 +15,9 @@ public:
 private:
   static Napi::FunctionReference constructor;
 
+  Napi::Value getWidth(const Napi::CallbackInfo& info);
+  Napi::Value getHeight(const Napi::CallbackInfo& info);
+
   cv::Size *_wrappedClass_;
 };
 
