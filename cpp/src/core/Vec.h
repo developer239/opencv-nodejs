@@ -20,8 +20,9 @@ public:
     return exports;
   }
 
-  explicit Vec() {
-
+  explicit Vec(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Vec>(info) {
+    Napi::Env env = info.Env();
+    Napi::HandleScope scope(env);
   }
 
 private:
