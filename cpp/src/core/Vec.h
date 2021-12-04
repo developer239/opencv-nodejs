@@ -4,8 +4,7 @@
 #include <napi.h>
 #include <opencv2/opencv.hpp>
 
-template<class Policy>
-class Vec : public Napi::ObjectWrap<Vec<Policy >> {
+class Vec : public Napi::ObjectWrap<Vec> {
 public:
   static Napi::Object Init(Napi::Env env, Napi::Object exports) {
     Napi::HandleScope scope(env);
@@ -21,8 +20,7 @@ public:
     return exports;
   }
 
-  template<class...Args, typename std::enable_if<sizeof...(Args) == Policy::Count, int>::type = 0>
-  explicit Vec(Args... args) {
+  explicit Vec() {
 
   }
 

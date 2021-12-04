@@ -17,7 +17,7 @@ Napi::Object InitAll(Napi::Env env, Napi::Object exports) {
   RotatedRect::Init(env, exports);
   Size::Init(env, exports);
 
-  Vec<Vec2dPolicy>::Init(env, exports);
+  Vec::Init(env, exports);
 
   return exports;
 }
