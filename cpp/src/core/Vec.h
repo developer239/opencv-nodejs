@@ -4,16 +4,30 @@
 #include <napi.h>
 #include <opencv2/opencv.hpp>
 
-class Vec : public Napi::ObjectWrap<Vec> {
+template<class Policy>
+class Vec : public Napi::ObjectWrap<Vec<Policy >> {
 public:
-  static Napi::Object Init(Napi::Env env, Napi::Object exports);
+  static Napi::Object Init(Napi::Env env, Napi::Object exports) {
+    Napi::HandleScope scope(env);
 
-  explicit Vec(const Napi::CallbackInfo &info);
+    Napi::Function func = DefineClass(env, "Vec", {
+
+    });
+
+    constructor = Napi::Persistent(func);
+    constructor.SuppressDestruct();
+
+    exports.Set("Vec", func);
+    return exports;
+  }
+
+  template<class...Args, typename std::enable_if<sizeof...(Args) == Policy::Count, int>::type = 0>
+  explicit Vec(Args... args) {
+
+  }
 
 private:
   static Napi::FunctionReference constructor;
-
-  cv::Vec2d *_wrappedClass_;
 };
 
 #endif
