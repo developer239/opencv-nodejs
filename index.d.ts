@@ -24,3 +24,7 @@ export class Rect {
   rescale(scale: number): void;
   toSquare(): void;
 }
+
+export class Vec {
+  constructor();
+}

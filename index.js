@@ -8,4 +8,5 @@ module.exports = {
   Point: addon.Point,
   Size: addon.Size,
   Rect: addon.Rect,
+  Vec: addon.Vec,
 }
