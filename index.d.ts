@@ -25,6 +25,17 @@ export class Rect {
   toSquare(): void;
 }
 
-export class Vec {
-  constructor();
+export class Vec {}
+
+export class Vec2 extends Vec {
+  constructor(x: number, y: number);
+  x: number;
+  y: number;
+}
+
+export class Vec3 extends Vec {
+  constructor(x: number, y: number, z: number);
+  x: number;
+  y: number;
+  z: number;
 }

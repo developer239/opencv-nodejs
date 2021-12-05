@@ -2298,10 +2298,10 @@ clone@^1.0.2:
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha1-2jCcwmPfFZlMaIypAheco8fNfH4=
 
-cmake-js@6.2.1:
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/cmake-js/-/cmake-js-6.2.1.tgz#3791b4a25c009be6368480afbbc657762f9deca1"
-  integrity sha512-wEpg0Z8SY6ihXTe+xosadh4PbASdWSM/locbLacWRYJCZfAjWLyOrd4RoVIeirLkfPxmG8GdNQA9tW/Rz5SfJA==
+cmake-js@6.3.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/cmake-js/-/cmake-js-6.3.0.tgz#ea9b5fd6789bf18dd02bdfec900bccc3fbe72af6"
+  integrity sha512-1uqTOmFt6BIqKlrX+39/aewU/JVhyZWDqwAL+6psToUwxj3yWPJiwxiZFmV0XdcoWmqGs7peZTxTbJtAcH8hxw==
   dependencies:
     axios "^0.21.1"
     debug "^4"

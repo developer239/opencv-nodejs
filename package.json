@@ -38,7 +38,7 @@
     "@semantic-release/release-notes-generator": "10.0.2",
     "@types/jest": "^27.0.3",
     "babel-jest": "^27.3.1",
-    "cmake-js": "6.2.1",
+    "cmake-js": "6.3.0",
     "jest": "^27.3.1",
     "semantic-release": "18.0.0",
     "ts-jest": "^27.0.7",
