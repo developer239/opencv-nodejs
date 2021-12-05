@@ -5,17 +5,17 @@ Napi::FunctionReference Point::constructor;
 Napi::Object Point::Init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
 
-  Napi::Function func = DefineClass(env, "Point", {
-      InstanceAccessor("x", &Point::getX, nullptr, napi_default),
-      InstanceAccessor("y", &Point::getY, nullptr, napi_default),
-      InstanceMethod("add", &Point::add, napi_default),
-      InstanceMethod("subtract", &Point::subtract, napi_default)
+  Napi::Function func = DefineClass(env, "Point2", {
+      InstanceAccessor("x", &Point::getX, nullptr),
+      InstanceAccessor("y", &Point::getY, nullptr),
+      InstanceMethod("add", &Point::add),
+      InstanceMethod("subtract", &Point::subtract)
   });
 
   constructor = Napi::Persistent(func);
   constructor.SuppressDestruct();
 
-  exports.Set("Point", func);
+  exports.Set("Point2", func);
   return exports;
 }
 
@@ -29,28 +29,24 @@ Point::Point(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Point>(info) {
     Napi::TypeError::New(env, "Arguments expected.").ThrowAsJavaScriptException();
   }
 
+  // Initialize from reference
   if (length == 1) {
     Napi::Object object = info[0].As<Napi::Object>();
 
     Point *pointObject = Napi::ObjectWrap<Point>::Unwrap(object);
     cv::Point *point = pointObject->getInternalInstance();
 
-    // TODO: this only handles 2D points
     this->_wrappedClass_ = new cv::Point(point->x, point->y);
     return;
   }
 
+  // Initialize from values
   if (length == 2) {
     Napi::Number x = info[0].As<Napi::Number>();
     Napi::Number y = info[1].As<Napi::Number>();
 
     this->_wrappedClass_ = new cv::Point(x, y);
     return;
-  }
-
-  // TODO: implement 3D point
-  if (length == 3) {
-    Napi::TypeError::New(env, "3D points are not implemented.").ThrowAsJavaScriptException();
   }
 }
 

@@ -1,16 +1,16 @@
-import { Point } from '../../../index'
+import { Point2 } from '../../../index'
 
-describe('[core] Point 2D', () => {
+describe('[core] Point2', () => {
   describe('constructor', () => {
     it('initializes from numbers', () => {
-      const point = new Point(10, 20)
+      const point = new Point2(10, 20)
 
       expect(point.x).toStrictEqual(10)
       expect(point.y).toStrictEqual(20)
     })
 
     it('initializes from Point instance', () => {
-      const point = new Point(new Point(20, 30))
+      const point = new Point2(new Point2(20, 30))
 
       expect(point.x).toStrictEqual(20)
       expect(point.y).toStrictEqual(30)
@@ -19,8 +19,8 @@ describe('[core] Point 2D', () => {
 
   describe('methods', () => {
     it('adds two points', () => {
-      const point1 = new Point(10, 20)
-      const point2 = new Point(15, 50)
+      const point1 = new Point2(10, 20)
+      const point2 = new Point2(15, 50)
 
       const resultPoint = point1.add(point2)
 
@@ -29,8 +29,8 @@ describe('[core] Point 2D', () => {
     })
 
     it('subtracts two points', () => {
-      const point1 = new Point(40, 60)
-      const point2 = new Point(30, 10)
+      const point1 = new Point2(40, 60)
+      const point2 = new Point2(30, 10)
 
       const resultPoint = point1.subtract(point2)
 

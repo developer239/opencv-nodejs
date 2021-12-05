@@ -1,10 +1,12 @@
-export class Point {
-  constructor(point: Point);
+declare class Point {}
+
+export class Point2 extends Point {
+  constructor(point: Point2);
   constructor(x: number, y: number);
   x: number;
   y: number;
-  add(point: Point): Point;
-  subtract(point: Point): Point;
+  add(point: Point2): Point2;
+  subtract(point: Point2): Point2;
 }
 
 export class Size {
@@ -25,7 +27,7 @@ export class Rect {
   toSquare(): void;
 }
 
-export class Vec {}
+declare class Vec {}
 
 export class Vec2 extends Vec {
   constructor(x: number, y: number);
