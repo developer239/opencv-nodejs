@@ -39,3 +39,11 @@ export class Vec3 extends Vec {
   y: number;
   z: number;
 }
+
+export class Vec4 extends Vec {
+  constructor(x: number, y: number, z: number, w: number);
+  x: number;
+  y: number;
+  z: number;
+  w: number;
+}
