@@ -7,14 +7,13 @@
 class Size : public Napi::ObjectWrap<Size> {
 public:
   static Napi::Object Init(Napi::Env env, Napi::Object exports);
+  static Napi::FunctionReference constructor;
 
   explicit Size(const Napi::CallbackInfo &info);
 
   cv::Size *getInternalInstance();
 
 private:
-  static Napi::FunctionReference constructor;
-
   Napi::Value getWidth(const Napi::CallbackInfo& info);
   Napi::Value getHeight(const Napi::CallbackInfo& info);
 

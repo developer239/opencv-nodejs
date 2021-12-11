@@ -7,13 +7,16 @@
 class RotatedRect : public Napi::ObjectWrap<RotatedRect> {
 public:
   static Napi::Object Init(Napi::Env env, Napi::Object exports);
+  static Napi::FunctionReference constructor;
 
   explicit RotatedRect(const Napi::CallbackInfo &info);
 
   cv::RotatedRect *getInternalInstance();
 
 private:
-  static Napi::FunctionReference constructor;
+  Napi::Value getCenter(const Napi::CallbackInfo& info);
+  Napi::Value getSize(const Napi::CallbackInfo& info);
+  Napi::Value getAngle(const Napi::CallbackInfo& info);
 
   cv::RotatedRect *_wrappedClass_;
 };

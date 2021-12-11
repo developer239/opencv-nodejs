@@ -7,14 +7,13 @@
 class Rect : public Napi::ObjectWrap<Rect> {
 public:
   static Napi::Object Init(Napi::Env env, Napi::Object exports);
+  static Napi::FunctionReference constructor;
 
   explicit Rect(const Napi::CallbackInfo &info);
 
   cv::Rect *getInternalInstance();
 
 private:
-  static Napi::FunctionReference constructor;
-
   Napi::Value getX(const Napi::CallbackInfo& info);
   Napi::Value getY(const Napi::CallbackInfo& info);
   Napi::Value getWidth(const Napi::CallbackInfo& info);

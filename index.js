@@ -11,4 +11,5 @@ module.exports = {
   Vec2: addon.Vec2,
   Vec3: addon.Vec3,
   Vec4: addon.Vec4,
+  RotatedRect: addon.RotatedRect,
 }
