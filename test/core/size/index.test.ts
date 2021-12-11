@@ -1,4 +1,4 @@
-import { Size } from '../../../index'
+import { Point2, Size } from '../../../index'
 
 describe('[core] Size', () => {
   describe('constructor', () => {
@@ -14,6 +14,16 @@ describe('[core] Size', () => {
 
       expect(size.width).toStrictEqual(10)
       expect(size.height).toStrictEqual(20)
+    })
+
+    it('should update instance properties', () => {
+      const size = new Size(40, 50)
+
+      size.width = 44
+      size.height = 55
+
+      expect(size.width).toStrictEqual(44)
+      expect(size.height).toStrictEqual(55)
     })
   })
 })

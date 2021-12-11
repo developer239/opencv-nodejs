@@ -6,8 +6,8 @@ Napi::Object Size::Init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
 
   Napi::Function func = DefineClass(env, "Size", {
-      InstanceAccessor("width", &Size::getWidth, nullptr, napi_default),
-      InstanceAccessor("height", &Size::getHeight, nullptr, napi_default),
+      InstanceAccessor("width", &Size::getWidth, &Size::setWidth, napi_default),
+      InstanceAccessor("height", &Size::getHeight, &Size::setHeight, napi_default),
   });
 
   constructor = Napi::Persistent(func);
@@ -54,4 +54,16 @@ Napi::Value Size::getHeight(const Napi::CallbackInfo &info) {
 
   int height = this->_wrappedClass_->height;
   return Napi::Number::New(env, height);
+}
+
+void Size::setWidth(const Napi::CallbackInfo &info, const Napi::Value &value) {
+  const auto width = value.As<Napi::Number>();
+
+  this->_wrappedClass_->width = width;
+}
+
+void Size::setHeight(const Napi::CallbackInfo &info, const Napi::Value &value) {
+  const auto height = value.As<Napi::Number>();
+
+  this->_wrappedClass_->height = height;
 }

@@ -15,7 +15,10 @@ public:
 
 private:
   Napi::Value getWidth(const Napi::CallbackInfo& info);
+  void setWidth(const Napi::CallbackInfo &info, const Napi::Value &value);
+
   Napi::Value getHeight(const Napi::CallbackInfo& info);
+  void setHeight(const Napi::CallbackInfo &info, const Napi::Value &value);
 
   cv::Size *_wrappedClass_;
 };
