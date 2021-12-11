@@ -65,5 +65,55 @@ describe('[core] RotatedRect', () => {
         })
       })
     })
+
+    describe('size', () => {
+      describe('when size instance property changes', () => {
+        it('should change size in the rectangle', () => {
+          const size = new Size(30, 40)
+
+          const rotatedRect = new RotatedRect(
+            new Point2(10, 20),
+            size,
+            50,
+          )
+
+          expect(size.width).toStrictEqual(30)
+          expect(size.height).toStrictEqual(40)
+
+          size.width = 88
+          size.height = 99
+
+          expect(size.width).toStrictEqual(88)
+          expect(size.height).toStrictEqual(99)
+
+          expect(rotatedRect.size.width).toStrictEqual(88)
+          expect(rotatedRect.size.height).toStrictEqual(99)
+        })
+      })
+
+      describe('when size in the rectangle changes', () => {
+        it('should change property of the size instance', () => {
+          const size = new Size(30, 40)
+
+          const rotatedRect = new RotatedRect(
+            new Point2(10, 20),
+            size,
+            50,
+          )
+
+          expect(rotatedRect.size.width).toStrictEqual(30)
+          expect(rotatedRect.size.height).toStrictEqual(40)
+
+          rotatedRect.size.width = 88
+          rotatedRect.size.height = 77
+
+          expect(rotatedRect.size.width).toStrictEqual(88)
+          expect(rotatedRect.size.height).toStrictEqual(77)
+
+          expect(size.width).toStrictEqual(88)
+          expect(size.height).toStrictEqual(77)
+        })
+      })
+    })
   })
 })

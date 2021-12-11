@@ -4,6 +4,7 @@
 #include <napi.h>
 #include <opencv2/opencv.hpp>
 #include "Point.h"
+#include "Size.h"
 
 class RotatedRect : public Napi::ObjectWrap<RotatedRect> {
 public:
@@ -21,6 +22,7 @@ private:
 
   cv::RotatedRect *_wrappedClass_;
   Point *_wrappedClassCenter_;
+  Size *_wrappedClassSize_;
 };
 
 #endif
