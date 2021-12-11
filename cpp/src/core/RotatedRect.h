@@ -3,6 +3,7 @@
 
 #include <napi.h>
 #include <opencv2/opencv.hpp>
+#include "Point.h"
 
 class RotatedRect : public Napi::ObjectWrap<RotatedRect> {
 public:
@@ -19,6 +20,7 @@ private:
   Napi::Value getAngle(const Napi::CallbackInfo& info);
 
   cv::RotatedRect *_wrappedClass_;
+  Point *_wrappedClassCenter_;
 };
 
 #endif

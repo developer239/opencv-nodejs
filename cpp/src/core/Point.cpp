@@ -6,8 +6,8 @@ Napi::Object Point::Init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
 
   Napi::Function func = DefineClass(env, "Point2", {
-      InstanceAccessor("x", &Point::getX, nullptr),
-      InstanceAccessor("y", &Point::getY, nullptr),
+      InstanceAccessor("x", &Point::getX, &Point::setX),
+      InstanceAccessor("y", &Point::getY, &Point::setY),
       InstanceMethod("add", &Point::add),
       InstanceMethod("subtract", &Point::subtract)
   });
@@ -66,6 +66,18 @@ Napi::Value Point::getY(const Napi::CallbackInfo &info) {
 
   int y = this->_wrappedClass_->y;
   return Napi::Number::New(env, y);
+}
+
+void Point::setX(const Napi::CallbackInfo &info, const Napi::Value &value) {
+  const auto x = value.As<Napi::Number>();
+
+  this->_wrappedClass_->x = x;
+}
+
+void Point::setY(const Napi::CallbackInfo &info, const Napi::Value &value) {
+  const auto y = value.As<Napi::Number>();
+
+  this->_wrappedClass_->y = y;
 }
 
 Napi::Value Point::add(const Napi::CallbackInfo &info) {

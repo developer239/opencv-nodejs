@@ -29,6 +29,7 @@ RotatedRect::RotatedRect(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Rota
   Napi::Object pointObject = info[0].As<Napi::Object>();
   Point *pointObjectPointer = Napi::ObjectWrap<Point>::Unwrap(pointObject);
   cv::Point *point = pointObjectPointer->getInternalInstance();
+  this->_wrappedClassCenter_ = pointObjectPointer;
 
   Napi::Object sizeObject = info[1].As<Napi::Object>();
   Size *sizeObjectPointer = Napi::ObjectWrap<Size>::Unwrap(sizeObject);
@@ -53,10 +54,7 @@ Napi::Value RotatedRect::getAngle(const Napi::CallbackInfo &info) {
 Napi::Value RotatedRect::getCenter(const Napi::CallbackInfo &info) {
   Napi::Env env = info.Env();
 
-  Napi::Number x = Napi::Number::New(env, this->_wrappedClass_->center.x);
-  Napi::Number y = Napi::Number::New(env, this->_wrappedClass_->center.y);
-
-  return Point::constructor.New({x, y});
+  return this->_wrappedClassCenter_->Value();
 }
 
 Napi::Value RotatedRect::getSize(const Napi::CallbackInfo &info) {
