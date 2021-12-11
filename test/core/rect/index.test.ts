@@ -1,4 +1,4 @@
-import { Rect } from '../../../index'
+import { Point2, Rect } from '../../../index'
 
 describe('[core] Rect', () => {
   describe('constructor', () => {
@@ -18,6 +18,20 @@ describe('[core] Rect', () => {
       expect(rect.y).toStrictEqual(20)
       expect(rect.width).toStrictEqual(30)
       expect(rect.height).toStrictEqual(40)
+    })
+
+    it('should update instance properties', () => {
+      const rect = new Rect(10, 20, 30, 40)
+
+      rect.x = 99
+      rect.y = 88
+      rect.width = 77
+      rect.height = 66
+
+      expect(rect.x).toStrictEqual(99)
+      expect(rect.y).toStrictEqual(88)
+      expect(rect.width).toStrictEqual(77)
+      expect(rect.height).toStrictEqual(66)
     })
   })
 

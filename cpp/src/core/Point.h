@@ -14,9 +14,11 @@ public:
   cv::Point *getInternalInstance();
 private:
   Napi::Value getX(const Napi::CallbackInfo& info);
-  Napi::Value getY(const Napi::CallbackInfo& info);
   void setX(const Napi::CallbackInfo &info, const Napi::Value &value);
+
+  Napi::Value getY(const Napi::CallbackInfo& info);
   void setY(const Napi::CallbackInfo &info, const Napi::Value &value);
+
   Napi::Value add(const Napi::CallbackInfo& info);
   Napi::Value subtract(const Napi::CallbackInfo& info);
 

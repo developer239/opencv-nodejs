@@ -6,10 +6,10 @@ Napi::Object Rect::Init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
 
   Napi::Function func = DefineClass(env, "Rect", {
-      InstanceAccessor("x", &Rect::getX, nullptr, napi_default),
-      InstanceAccessor("y", &Rect::getY, nullptr, napi_default),
-      InstanceAccessor("width", &Rect::getWidth, nullptr, napi_default),
-      InstanceAccessor("height", &Rect::getHeight, nullptr, napi_default),
+      InstanceAccessor("x", &Rect::getX, &Rect::setX, napi_default),
+      InstanceAccessor("y", &Rect::getY, &Rect::setY, napi_default),
+      InstanceAccessor("width", &Rect::getWidth, &Rect::setWidth, napi_default),
+      InstanceAccessor("height", &Rect::getHeight, &Rect::setHeight, napi_default),
       InstanceMethod("rescale", &Rect::rescale, napi_default),
       InstanceMethod("toSquare", &Rect::toSquare, napi_default),
   });
@@ -74,6 +74,30 @@ Napi::Value Rect::getY(const Napi::CallbackInfo &info) {
 
   int y = this->_wrappedClass_->y;
   return Napi::Number::New(env, y);
+}
+
+void Rect::setX(const Napi::CallbackInfo &info, const Napi::Value &value) {
+  const auto x = value.As<Napi::Number>();
+
+  this->_wrappedClass_->x = x;
+}
+
+void Rect::setY(const Napi::CallbackInfo &info, const Napi::Value &value) {
+  const auto y = value.As<Napi::Number>();
+
+  this->_wrappedClass_->y = y;
+}
+
+void Rect::setWidth(const Napi::CallbackInfo &info, const Napi::Value &value) {
+  const auto width = value.As<Napi::Number>();
+
+  this->_wrappedClass_->width = width;
+}
+
+void Rect::setHeight(const Napi::CallbackInfo &info, const Napi::Value &value) {
+  const auto height = value.As<Napi::Number>();
+
+  this->_wrappedClass_->height = height;
 }
 
 void Rect::rescale(const Napi::CallbackInfo &info) {

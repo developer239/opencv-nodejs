@@ -15,9 +15,17 @@ public:
 
 private:
   Napi::Value getX(const Napi::CallbackInfo& info);
+  void setX(const Napi::CallbackInfo &info, const Napi::Value &value);
+
   Napi::Value getY(const Napi::CallbackInfo& info);
+  void setY(const Napi::CallbackInfo &info, const Napi::Value &value);
+
   Napi::Value getWidth(const Napi::CallbackInfo& info);
+  void setWidth(const Napi::CallbackInfo &info, const Napi::Value &value);
+
   Napi::Value getHeight(const Napi::CallbackInfo& info);
+  void setHeight(const Napi::CallbackInfo &info, const Napi::Value &value);
+
   void rescale(const Napi::CallbackInfo& info);
   void toSquare(const Napi::CallbackInfo& info);
 
