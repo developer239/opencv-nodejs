@@ -73,4 +73,15 @@ export class Vec4 extends Vec {
   z: number;
   w: number;
 }
+
+export class RotatedRect {
+  constructor(
+    center: Point2,
+    size: Size,
+    angle: number
+  );
+  center: Point2;
+  size: Size;
+  angle: number;
+}
 ```
