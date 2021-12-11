@@ -15,6 +15,16 @@ describe('[core] Point2', () => {
       expect(point.x).toStrictEqual(20)
       expect(point.y).toStrictEqual(30)
     })
+
+    it('should update instance properties', () => {
+      const point = new Point2(new Point2(20, 30))
+
+      point.x = 88
+      point.y = 77
+
+      expect(point.x).toStrictEqual(88)
+      expect(point.y).toStrictEqual(77)
+    })
   })
 
   describe('methods', () => {
