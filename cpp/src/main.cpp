@@ -4,6 +4,7 @@
 #include "core/RotatedRect.h"
 #include "core/Size.h"
 #include "core/Vec.h"
+#include "core/Mat.h"
 
 struct Vec2dPolicy {
   constexpr static char *name = "Vec2";
@@ -31,6 +32,7 @@ Napi::Object InitAll(Napi::Env env, Napi::Object exports) {
   Vec<Vec2dPolicy>::Init(env, exports);
   Vec<Vec3dPolicy>::Init(env, exports);
   Vec<Vec4dPolicy>::Init(env, exports);
+  Mat::Init(env, exports);
 
   return exports;
 }

@@ -19,7 +19,9 @@ add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC}
         src/core/Size.cpp
         src/core/Size.h
         src/core/Vec.h
-        )
+        src/core/Mat.cpp
+        src/core/Mat.h
+)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
 
