@@ -79,3 +79,4 @@ export class Mat {
 }
 
 export function imRead(path: string): Promise<Mat>;
+export function imShow(): void;

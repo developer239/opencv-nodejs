@@ -14,4 +14,5 @@ module.exports = {
   Vec4: addon.Vec4,
   RotatedRect: addon.RotatedRect,
   imRead: addon.imRead,
+  imShow: addon.imShow,
 }

@@ -1,3 +1,6 @@
+#ifndef __IMAGE_READ_H__
+#define __IMAGE_READ_H__
+
 #include <sstream>
 #include <napi.h>
 
@@ -23,3 +26,4 @@ protected:
   void OnError(const Napi::Error &error) override;
 };
 
+#endif
