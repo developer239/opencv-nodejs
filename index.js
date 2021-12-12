@@ -4,6 +4,19 @@ const addon = require('bindings')({
   try: [['module_root', 'cpp', 'build', 'Release', 'bindings']]
 })
 
+const test = async () => {
+  console.log('addon.hello()', addon.hello)
+
+  try {
+    const result = await addon.hello('eee')
+    console.log('result', result)
+  } catch(e) {
+    console.error(e)
+  }
+}
+
+test()
+
 module.exports = {
   Point2: addon.Point2,
   Size: addon.Size,

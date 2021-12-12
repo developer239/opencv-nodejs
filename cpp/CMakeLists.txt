@@ -21,6 +21,8 @@ add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC}
         src/core/Vec.h
         src/core/Mat.cpp
         src/core/Mat.h
+        src/functions/ImageRead.cpp
+        src/functions/ImageRead.h
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" SUFFIX ".node")

@@ -5,6 +5,7 @@
 #include "core/Size.h"
 #include "core/Vec.h"
 #include "core/Mat.h"
+#include "functions/ImageRead.h"
 
 struct Vec2dPolicy {
   constexpr static char *name = "Vec2";
@@ -33,6 +34,8 @@ Napi::Object InitAll(Napi::Env env, Napi::Object exports) {
   Vec<Vec3dPolicy>::Init(env, exports);
   Vec<Vec4dPolicy>::Init(env, exports);
   Mat::Init(env, exports);
+
+  exports.Set(Napi::String::New(env, "hello"), Napi::Function::New(env, ImageReadWorker::Create));
 
   return exports;
 }
