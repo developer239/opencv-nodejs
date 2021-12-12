@@ -7,6 +7,7 @@
 #include "core/Mat.h"
 #include "functions/ImageRead.h"
 #include "functions/ImageShow.h"
+#include "functions/WaitKey.h"
 
 struct Vec2dPolicy {
   constexpr static char *name = "Vec2";
@@ -38,6 +39,7 @@ Napi::Object InitAll(Napi::Env env, Napi::Object exports) {
 
   exports.Set(Napi::String::New(env, "imRead"), Napi::Function::New(env, ImageReadWorker::Create));
   exports.Set(Napi::String::New(env, "imShow"), Napi::Function::New(env, ImageShow));
+  exports.Set(Napi::String::New(env, "waitKey"), Napi::Function::New(env, WaitKey));
 
   return exports;
 }

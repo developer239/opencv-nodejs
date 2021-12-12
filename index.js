@@ -15,4 +15,5 @@ module.exports = {
   RotatedRect: addon.RotatedRect,
   imRead: addon.imRead,
   imShow: addon.imShow,
+  waitKey: addon.waitKey,
 }

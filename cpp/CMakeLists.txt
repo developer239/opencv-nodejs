@@ -25,6 +25,8 @@ add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC}
         src/functions/ImageRead.h
         src/functions/ImageShow.cpp
         src/functions/ImageShow.h
+        src/functions/WaitKey.cpp
+        src/functions/WaitKey.h
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
