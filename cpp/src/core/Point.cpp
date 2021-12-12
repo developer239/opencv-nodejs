@@ -32,7 +32,6 @@ Point::Point(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Point>(info) {
   // Initialize from reference
   if (length == 1) {
     Napi::Object object = info[0].As<Napi::Object>();
-
     Point *pointObject = Napi::ObjectWrap<Point>::Unwrap(object);
     cv::Point *point = pointObject->getInternalInstance();
 
