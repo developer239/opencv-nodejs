@@ -79,5 +79,11 @@ export class Mat {
 }
 
 export function imRead(path: string): Promise<Mat>;
+
 export function imShow(): void;
+
 export function waitKey(delay?: number): void;
+
+export enum DATA_TYPE {
+  CV_8UC3 = 16
+}

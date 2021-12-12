@@ -16,4 +16,5 @@ module.exports = {
   imRead: addon.imRead,
   imShow: addon.imShow,
   waitKey: addon.waitKey,
+  DATA_TYPE: addon.DATA_TYPE,
 }

@@ -9,6 +9,7 @@
 #include "functions/ImageShow.h"
 #include "functions/WaitKey.h"
 
+// TODO: move to separate file START
 struct Vec2dPolicy {
   constexpr static char *name = "Vec2";
   constexpr static int  Count  = 2;
@@ -26,6 +27,7 @@ struct Vec4dPolicy {
   constexpr static int  Count  = 4;
   using ElementType = double;
 };
+// END
 
 Napi::Object InitAll(Napi::Env env, Napi::Object exports) {
   Point::Init(env, exports);
@@ -40,6 +42,13 @@ Napi::Object InitAll(Napi::Env env, Napi::Object exports) {
   exports.Set(Napi::String::New(env, "imRead"), Napi::Function::New(env, ImageReadWorker::Create));
   exports.Set(Napi::String::New(env, "imShow"), Napi::Function::New(env, ImageShow));
   exports.Set(Napi::String::New(env, "waitKey"), Napi::Function::New(env, WaitKey));
+
+  // TODO: move to separate file
+  Napi::Object DATA_TYPE = Napi::Object::New(env);
+  DATA_TYPE.Set("CV_8UC3", CV_8UC3);
+
+  exports.Set(Napi::String::New(env, "DATA_TYPE"), DATA_TYPE);
+  // END
 
   return exports;
 }
