@@ -6,6 +6,7 @@ Napi::Object Mat::Init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
 
   Napi::Function func = DefineClass(env, "Mat", {
+      InstanceMethod("test", &Mat::test)
   });
 
   constructor = Napi::Persistent(func);
@@ -20,9 +21,20 @@ Mat::Mat(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Mat>(info) {
   Napi::HandleScope scope(env);
 
   this->_wrappedClass_ = new cv::Mat();
+
   return;
 }
 
 cv::Mat *Mat::getInternalInstance() {
   return this->_wrappedClass_;
 }
+
+void Mat::bindMat(cv::Mat *matrix) {
+  this->_wrappedClass_ = matrix;
+}
+
+void Mat::test(const Napi::CallbackInfo &info) {
+  std::cout << "test" << std::endl;
+}
+
+

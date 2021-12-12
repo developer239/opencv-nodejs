@@ -11,9 +11,13 @@ public:
 
   explicit Mat(const Napi::CallbackInfo &info);
 
+  void bindMat(cv::Mat *matrix);
+
   cv::Mat *getInternalInstance();
 private:
   cv::Mat *_wrappedClass_;
+
+  void test(const Napi::CallbackInfo &info);
 };
 
 #endif

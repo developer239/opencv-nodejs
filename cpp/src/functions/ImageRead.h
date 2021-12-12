@@ -1,10 +1,11 @@
 #include <sstream>
 #include <napi.h>
-#include <unistd.h>
+
+#include <opencv2/opencv.hpp>
 
 class ImageReadWorker : public Napi::AsyncWorker {
 public:
-  ImageReadWorker(Napi::Env env, std::string &name);
+  ImageReadWorker(Napi::Env env, std::string &fileName);
 
   static Napi::Value Create(const Napi::CallbackInfo &info);
 
@@ -12,7 +13,7 @@ public:
 
 protected:
   std::string input;
-  std::string result;
+  cv::Mat *result;
   Napi::Promise::Deferred deferredPromise;
 
   void Execute() override;

@@ -35,7 +35,7 @@ Napi::Object InitAll(Napi::Env env, Napi::Object exports) {
   Vec<Vec4dPolicy>::Init(env, exports);
   Mat::Init(env, exports);
 
-  exports.Set(Napi::String::New(env, "hello"), Napi::Function::New(env, ImageReadWorker::Create));
+  exports.Set(Napi::String::New(env, "imRead"), Napi::Function::New(env, ImageReadWorker::Create));
 
   return exports;
 }

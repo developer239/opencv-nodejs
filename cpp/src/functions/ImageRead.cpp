@@ -1,21 +1,27 @@
 #include "ImageRead.h"
+#include "../core/Mat.h"
+#include "../core/Point.h"
 
-ImageReadWorker::ImageReadWorker(Napi::Env env, std::string &name) :
+ImageReadWorker::ImageReadWorker(Napi::Env env, std::string &fileName) :
     Napi::AsyncWorker(env),
-    input(name),
+    input(fileName),
     result(),
     deferredPromise(Napi::Promise::Deferred::New(env)) {}
 
 Napi::Value ImageReadWorker::Create(const Napi::CallbackInfo &info) {
   if (info.Length() != 1) {
-    return Reject(info.Env(), "MissingArgument");
+    return Reject(info.Env(), "Expected file path");
   }
 
   if (!info[0].IsString()) {
-    return Reject(info.Env(), "InvalidArgument");
+    return Reject(info.Env(), "File path should be a string");
   }
 
   std::string input = info[0].As<Napi::String>().Utf8Value();
+
+  if (input.size() < 1) {
+    return Reject(info.Env(), "File path is empty");
+  }
 
   auto *worker = new ImageReadWorker(info.Env(), input);
   worker->Queue();
@@ -24,16 +30,8 @@ Napi::Value ImageReadWorker::Create(const Napi::CallbackInfo &info) {
 }
 
 void ImageReadWorker::Execute() {
-  if (input.size() < 1) {
-    SetError("EmptyName");
-    return;
-  }
-
-  usleep(3000000);
-
-  std::stringstream str;
-  str << "hello, " << input;
-  result = str.str();
+  cv::Mat image = cv::imread(input);
+  result = &image;
 }
 
 Napi::Value ImageReadWorker::Reject(Napi::Env env, const char *message) {
@@ -43,8 +41,14 @@ Napi::Value ImageReadWorker::Reject(Napi::Env env, const char *message) {
   return failed.Promise();
 }
 
+// TODO: possibly move to execute method?
 void ImageReadWorker::OnOK() {
-  deferredPromise.Resolve(Napi::String::New(Env(), result));
+  Napi::Object imageObject = Mat::constructor.New({});
+  Mat *image = Napi::ObjectWrap<Mat>::Unwrap(imageObject);
+
+  image->bindMat(result);
+
+  deferredPromise.Resolve(image->Value());
 }
 
 void ImageReadWorker::OnError(const Napi::Error &error) {
