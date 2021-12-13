@@ -101,8 +101,13 @@ export class RotatedRect {
 
 export class Mat {
   constructor()
+  constructor(rows: number, cols: number)
+  constructor(rows: number, cols: number, type: DATA_TYPE)
+  constructor(rows: number, cols: number, type: DATA_TYPE, fillValue: number[])
   rows: number
   cols: Size
+  type(): DATA_TYPE
+  at(y: number, x: number): number
 }
 
 export function imRead(path: string): Promise<Mat>
@@ -112,6 +117,7 @@ export function imShow(): void
 export function waitKey(delay?: number): void
 
 export enum DATA_TYPE {
-  CV_8UC3 = 16
+  CV_8UC3 = 16,
+  CV_8UC4 = 24
 }
 ```

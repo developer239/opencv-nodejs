@@ -81,8 +81,8 @@ export class Mat {
   constructor(rows: number, cols: number, type: DATA_TYPE, fillValue: number[])
   rows: number
   cols: Size
-  type(): DATA_TYPE;
-  at(y: number, x: number): number;
+  type(): DATA_TYPE
+  at(y: number, x: number): number
 }
 
 export function imRead(path: string): Promise<Mat>
