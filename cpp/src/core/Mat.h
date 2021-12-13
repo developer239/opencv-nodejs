@@ -20,6 +20,7 @@ private:
   Napi::Value getCols(const Napi::CallbackInfo& info);
   Napi::Value getRows(const Napi::CallbackInfo& info);
   Napi::Value type(const Napi::CallbackInfo& info);
+  Napi::Value at(const Napi::CallbackInfo& info);
 };
 
 #endif
