@@ -17,7 +17,8 @@ public:
 private:
   cv::Mat *_wrappedClass_;
 
-  void test(const Napi::CallbackInfo &info);
+  Napi::Value getCols(const Napi::CallbackInfo& info);
+  Napi::Value getRows(const Napi::CallbackInfo& info);
 };
 
 #endif

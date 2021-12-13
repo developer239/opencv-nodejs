@@ -6,7 +6,8 @@ Napi::Object Mat::Init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
 
   Napi::Function func = DefineClass(env, "Mat", {
-      InstanceMethod("test", &Mat::test)
+      InstanceAccessor("cols", &Mat::getCols, nullptr),
+      InstanceAccessor("rows", &Mat::getRows, nullptr),
   });
 
   constructor = Napi::Persistent(func);
@@ -33,8 +34,16 @@ void Mat::bindMat(cv::Mat *matrix) {
   this->_wrappedClass_ = matrix;
 }
 
-void Mat::test(const Napi::CallbackInfo &info) {
-  std::cout << "test" << std::endl;
+Napi::Value Mat::getCols(const Napi::CallbackInfo &info) {
+  Napi::Env env = info.Env();
+
+  int cols = this->_wrappedClass_->cols;
+  return Napi::Number::New(env, cols);
 }
 
+Napi::Value Mat::getRows(const Napi::CallbackInfo &info) {
+  Napi::Env env = info.Env();
 
+  int cols = this->_wrappedClass_->cols;
+  return Napi::Number::New(env, cols);
+}
