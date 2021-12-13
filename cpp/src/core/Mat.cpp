@@ -64,8 +64,6 @@ Mat::Mat(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Mat>(info) {
 
     this->_wrappedClass_ = new cv::Mat(rows, cols, dataType, fillScalar);
 
-    std::cout << *this->_wrappedClass_ << std::endl;
-
     return;
   }
 
