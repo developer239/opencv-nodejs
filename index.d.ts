@@ -76,6 +76,7 @@ export class RotatedRect {
 
 export class Mat {
   constructor()
+  constructor(rows: number, cols: number)
   rows: number
   cols: Size
 }
@@ -87,5 +88,6 @@ export function imShow(): void
 export function waitKey(delay?: number): void
 
 export enum DATA_TYPE {
-  CV_8UC3 = 16
+  CV_8UC3 = 16,
+  CV_8UC4 = 24
 }

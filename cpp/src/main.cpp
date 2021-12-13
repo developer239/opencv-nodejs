@@ -46,6 +46,7 @@ Napi::Object InitAll(Napi::Env env, Napi::Object exports) {
   // TODO: move to separate file
   Napi::Object DATA_TYPE = Napi::Object::New(env);
   DATA_TYPE.Set("CV_8UC3", CV_8UC3);
+  DATA_TYPE.Set("CV_8UC4", CV_8UC4);
 
   exports.Set(Napi::String::New(env, "DATA_TYPE"), DATA_TYPE);
   // END
