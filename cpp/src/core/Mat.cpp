@@ -8,6 +8,7 @@ Napi::Object Mat::Init(Napi::Env env, Napi::Object exports) {
   Napi::Function func = DefineClass(env, "Mat", {
       InstanceAccessor("cols", &Mat::getCols, nullptr),
       InstanceAccessor("rows", &Mat::getRows, nullptr),
+      InstanceMethod("type", &Mat::type, napi_default),
   });
 
   constructor = Napi::Persistent(func);
@@ -68,4 +69,12 @@ Napi::Value Mat::getRows(const Napi::CallbackInfo &info) {
 
   int rows = this->_wrappedClass_->rows;
   return Napi::Number::New(env, rows);
+}
+
+Napi::Value Mat::type(const Napi::CallbackInfo &info) {
+  Napi::Env env = info.Env();
+
+  int type = this->_wrappedClass_->type();
+
+  return Napi::Number::New(env, type);
 }

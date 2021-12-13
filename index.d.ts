@@ -77,8 +77,10 @@ export class RotatedRect {
 export class Mat {
   constructor()
   constructor(rows: number, cols: number)
+  constructor(rows: number, cols: number, type: DATA_TYPE)
   rows: number
   cols: Size
+  type(): DATA_TYPE;
 }
 
 export function imRead(path: string): Promise<Mat>
