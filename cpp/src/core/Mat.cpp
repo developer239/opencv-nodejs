@@ -27,6 +27,7 @@ Mat::Mat(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Mat>(info) {
   int length = info.Length();
 
   if (length == 0) {
+    // 💣
     this->_wrappedClass_ = new cv::Mat();
     return;
   }
@@ -35,6 +36,7 @@ Mat::Mat(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Mat>(info) {
     Napi::Number rows = info[0].As<Napi::Number>();
     Napi::Number cols = info[1].As<Napi::Number>();
 
+    // 💣
     this->_wrappedClass_ = new cv::Mat(rows, cols, CV_8UC3);
     return;
   }
@@ -44,6 +46,7 @@ Mat::Mat(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Mat>(info) {
     Napi::Number cols = info[1].As<Napi::Number>();
     Napi::Number dataType = info[2].As<Napi::Number>();
 
+    // 💣
     this->_wrappedClass_ = new cv::Mat(rows, cols, dataType);
     return;
   }
@@ -62,6 +65,7 @@ Mat::Mat(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Mat>(info) {
       fillScalar[i] = fillValue.Get(i).ToNumber().Int32Value();
     }
 
+    // 💣
     this->_wrappedClass_ = new cv::Mat(rows, cols, dataType, fillScalar);
 
     return;

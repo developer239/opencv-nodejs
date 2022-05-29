@@ -28,6 +28,7 @@ Rect::Rect(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Rect>(info) {
   int length = info.Length();
 
   if (length == 0) {
+    // 💣
     this->_wrappedClass_ = new cv::Rect();
     return;
   }
@@ -41,6 +42,7 @@ Rect::Rect(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Rect>(info) {
   Napi::Number width = info[2].As<Napi::Number>();
   Napi::Number height = info[3].As<Napi::Number>();
 
+  // 💣
   this->_wrappedClass_ = new cv::Rect(x, y, width, height);
 }
 

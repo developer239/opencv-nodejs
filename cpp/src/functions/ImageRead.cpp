@@ -23,6 +23,7 @@ Napi::Value ImageReadWorker::Create(const Napi::CallbackInfo &info) {
     return Reject(info.Env(), "File path is empty");
   }
 
+  // 💣
   auto *worker = new ImageReadWorker(info.Env(), input);
   worker->Queue();
 

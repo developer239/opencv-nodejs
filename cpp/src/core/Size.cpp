@@ -24,6 +24,7 @@ Size::Size(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Size>(info) {
   int length = info.Length();
 
   if (length == 0) {
+    // 💣
     this->_wrappedClass_ = new cv::Size();
     return;
   }
@@ -35,6 +36,7 @@ Size::Size(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Size>(info) {
   Napi::Number width = info[0].As<Napi::Number>();
   Napi::Number height = info[1].As<Napi::Number>();
 
+  // 💣
   this->_wrappedClass_ = new cv::Size(width, height);
 }
 

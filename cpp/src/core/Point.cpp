@@ -35,6 +35,7 @@ Point::Point(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Point>(info) {
     Point *pointObject = Napi::ObjectWrap<Point>::Unwrap(object);
     cv::Point *point = pointObject->getInternalInstance();
 
+    // 💣
     this->_wrappedClass_ = new cv::Point(point->x, point->y);
     return;
   }
@@ -44,6 +45,7 @@ Point::Point(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Point>(info) {
     Napi::Number x = info[0].As<Napi::Number>();
     Napi::Number y = info[1].As<Napi::Number>();
 
+    // 💣
     this->_wrappedClass_ = new cv::Point(x, y);
     return;
   }

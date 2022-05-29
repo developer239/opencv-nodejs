@@ -38,6 +38,7 @@ RotatedRect::RotatedRect(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Rota
 
   Napi::Number angle = info[2].As<Napi::Number>();
 
+  // 💣
   this->_wrappedClass_ = new cv::RotatedRect(*point, *size, angle);
 }
 
